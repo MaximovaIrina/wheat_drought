@@ -29,6 +29,8 @@ class WheatDS(Dataset):
         name = tir_path.split('\\')[-1]
         tir = cv2.imread(tir_path)
         rgb = cv2.imread(rgb_path)
+
         if self.transform != None:
-            tir, rgb, name = self.transform((tir, rgb, name))
+            return self.transform((tir, rgb, name))
+
         return tir, rgb, name

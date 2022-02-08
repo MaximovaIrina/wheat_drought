@@ -1,0 +1,41 @@
+train_list: ds/train.json
+test_list: ds/test.json
+transforms: 
+  - Calibration:
+      ratio: 0.56
+      dh: 50
+      dw: 10
+  - ExtractRightHalf:
+      offset: 10
+
+task_mode: regression
+ndvi_mode: ndvi_t
+space_mode: global ###
+bins_path: exps/HistQuantAnalysis/HistQuantStatic.npy ###
+
+ndvi_statistic:
+  ndvi_t_mean: -0.125
+  ndvi_t_std:   0.437
+  ndvi_g_mean:  0.060
+  ndvi_g_std:   0.070
+dist: [1, ]
+theta: [0, 0.25, 0.5, 0.75] # * np.pi
+batch_size: 5
+
+hidden_n: 100 ####
+hidden_activation: ReLU
+out_n: 1
+out_activation: Sigmoid
+
+loss: CrossEntropyLoss
+optimizer: Adam
+metric: Fscore
+
+max_epoch: 150
+epsilon: 0.00000001
+
+
+
+  
+
+
